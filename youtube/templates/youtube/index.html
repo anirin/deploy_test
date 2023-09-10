@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!-- Material Icons -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+	<!-- CSS File -->
+	<link rel="stylesheet" href={% static "youtube/index.css" %} />
+	<title>My Youtube</title>
+</head>
+
+<body>
+	<header class="header">
+		<div class="logo left">
+			<span id="menu" class="material-icons">menu</span>
+			<span class="material-icons-outlined">play_circle_filled</span>
+			<span>Youtube</span>
+		</div>
+
+		<div class="search center">
+			<form action="">
+				<input type="text" placeholder="Search" />
+				<button><span class="material-icons">search</span></button>
+			</form>
+			<span class="material-icons mic">mic</span>
+		</div>
+
+		<div class="icons right">
+			<a href={% url 'youtube:create' %}>
+				<span class="material-icons">videocam</span>
+			</a>
+			<span class="material-icons">apps</span>
+			<span class="material-icons">notifications</span>
+			<span class="material-icons display-this">account_circle</span>
+		</div>
+	</header>
+	<main>
+		<div class=”side-bar”>
+			<div class="nav">
+				<a class="nav-link active">
+					<span class="material-icons">home</span>
+					<span>ホーム</span>
+				</a>
+				<a class="nav-link">
+					<span class="material-icons">local_fire_department</span>
+					<span>急上昇</span>
+				</a>
+				<a class="nav-link">
+					<span class="material-icons">subscriptions</span>
+					<span>登録チャンネル</span>
+				</a>
+			</div>
+			<hr>
+			<a class="nav-link">
+				<span class="material-icons">library_add_check</span>
+				<span>ライブラリ</span>
+			</a>
+			<a class="nav-link">
+				<span class="material-icons">history</span>
+				<span>履歴</span>
+			</a>
+			<a class="nav-link">
+				<span class="material-icons">play_arrow</span>
+				<span>作成した動画</span>
+			</a>
+			<a class="nav-link">
+				<span class="material-icons">watch_later</span>
+				<span>後で見る</span>
+			</a>
+			<a class="nav-link">
+				<span class="material-icons">thumb_up</span>
+				<span>高く評価した動画</span>
+			</a>
+		</div>
+		<div class="content">
+			<div class="videos">
+				{% for video in videos %}
+				<!-- a video starts -->
+				<div class="video">
+					<div class="thumbnail">
+						<a href={% url 'youtube:detail' video_id=video.id %}>
+							<img src="/media/{{video.thumbnail}}" alt="" />
+						</a>
+					</div>
+					<div class="details">
+						<div class="author">
+							<img src="/media/{{video.icon}}" alt="" />
+						</div>
+						<div class="title">
+							<h3>
+								{{video.title}}
+							</h3>
+							<a href="">
+								{{video.author}}
+							</a>
+							<span> {{video.created_at}} </span>
+						</div>
+					</div>
+				</div>
+				<!-- a video Ends -->
+				{% empty %}
+					<div>動画がありません</div>
+				{% endfor %}
+			</div>
+		</div>
+	</main>
+	<!-- Main Body Ends -->
+</body>
+</html>

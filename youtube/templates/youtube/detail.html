@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+{% load static %}
+<head>
+    <meta charset="utf-8" />
+    <title>動画詳細</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'youtube/ajax.js' %}"></script>
+    <script src="{% static 'youtube/comment.js' %}"></script>
+</head>
+
+<body>
+    <div class="video">
+		<div class="thumbnail">
+				<img src="/media/{{video.thumbnail}}" alt="" />
+		</div>
+		<div class="details">
+			<div class="author">
+				<img src="/media/{{video.icon}}" alt="" />
+			</div>
+			<div class="title">
+				<h3>
+					{{video.title}}
+				</h3>
+				<a href="">
+					{{video.author}}
+				</a>
+				<span> {{video.created_at}} </span>
+			</div>
+			<div class="content">
+				{{video.content}}
+			</div>
+		</div>
+	</div>
+	<h2>コメント記入</h2>
+	<form id="form_area" action="{% url 'youtube:detail' video_id=video.id %}" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" id="submit">送信</button>
+	</form>
+    <hr>
+    <h2>コメント</h2>
+    <div id="content_area">{% include "youtube/content.html" %}</div>
+    <a href="{% url 'youtube:index' %}">トップページに戻る</a>
+</body>
+
+</html>
