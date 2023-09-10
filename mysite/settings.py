@@ -26,8 +26,10 @@ SECRET_KEY = 'django-insecure-dystodeuu-lw!8yi(1**rgja2x5!9j^@sdmff8&)f!4a$*y@+#
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+# DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '.pythonanywhere.com', 'atsukiokamoto.pythonanywhere.com']
+# ALLOWED_HOSTS = ['localhost', '.pythonanywhere.com', 'atsukiokamoto.pythonanywhere.com']
+ALLOWED_HOSTS = ['*']
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 SECRET_KEY = get_random_secret_key()
