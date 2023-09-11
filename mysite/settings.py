@@ -16,13 +16,10 @@ import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -31,9 +28,8 @@ MEDIA_URL = '/media/'
 SECRET_KEY = 'django-insecure-dystodeuu-lw!8yi(1**rgja2x5!9j^@sdmff8&)f!4a$*y@+#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
 # DEBUG = True
-
+DEBUG = False
 ALLOWED_HOSTS = ['localhost', '.pythonanywhere.com', 'atsukiokamoto.pythonanywhere.com']
 # ALLOWED_HOSTS = ['*']
 CSRF_COOKIE_SECURE = True
@@ -44,7 +40,7 @@ SECRET_KEY = get_random_secret_key()
 # Application definition
 
 INSTALLED_APPS = [
-	'youtube.apps.YoutubeConfig',
+    'youtube.apps.YoutubeConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -76,6 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media'
             ],
         },
     },
@@ -83,20 +80,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
-# Password validation
-# https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -113,18 +102,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/4.2/topics/i18n/
-
 LANGUAGE_CODE = 'ja'
-
 TIME_ZONE = 'Asia/Tokyo'
-
 USE_I18N = True
-
 USE_TZ = True
-
-
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
